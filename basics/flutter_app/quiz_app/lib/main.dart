@@ -6,9 +6,23 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+
   void answerQuestion() {
-    print("answer chosen");
+    setState(() {
+      questionIndex++;
+    });
+
+    print(questionIndex);
   }
 
   @override
@@ -27,18 +41,22 @@ class MyApp extends StatelessWidget {
         ), // Scaffold class takes a positonal argument as an app bar whcih takes a title
         body: Column(
           children: [
-            Text("The questions is!: "),
+            Text(
+              questions[questionIndex],
+            ),
             RaisedButton(
               child: Text('Answer 1'),
               onPressed: answerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 2'),
-              onPressed: answerQuestion,
+              onPressed: () => print("Answer 2 chosen!"),
             ),
             RaisedButton(
               child: Text('Answer 3'),
-              onPressed: answerQuestion,
+              onPressed: () {
+                print("Answer 3 chosen!");
+              },
             ),
           ],
         ),
