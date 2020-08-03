@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
 // void main() {
 //   runApp(MyApp());
 // }
@@ -10,19 +11,19 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
-      questionIndex++;
+      _questionIndex++;
     });
 
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   @override
@@ -41,12 +42,12 @@ class MyAppState extends State<MyApp> {
         ), // Scaffold class takes a positonal argument as an app bar whcih takes a title
         body: Column(
           children: [
-            Text(
-              questions[questionIndex],
+            Question(
+              questions[_questionIndex],
             ),
             RaisedButton(
               child: Text('Answer 1'),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 2'),
