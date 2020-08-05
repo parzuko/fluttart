@@ -11,6 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primarySwatch: Colors.orange,
+      ),
       title: 'Name Generator',
       home: RandomWords(),
     );
@@ -24,13 +28,19 @@ class RandomWords extends StatefulWidget {
 
 class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
+  final _saved = Set<WordPair>();
   final _biggerFont = TextStyle(fontSize: 18.0);
 
   Widget _buildRow(WordPair pair) {
+    final alreadySaved = _saved.contains(pair);
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
+      ),
+      trailing: Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.blue : null,
       ),
     );
   }
@@ -56,6 +66,23 @@ class _RandomWordsState extends State<RandomWords> {
         title: Text('Startup Name Generator'),
       ),
       body: _buildSuggestions(),
+    );
+  }
+}
+
+class MyAppWow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Wassup",
+          style:
+              TextStyle(fontFamily: 'Roboto Mono', fontStyle: FontStyle.italic),
+        ),
+        centerTitle: true,
+      ),
+      body: Text("Hello"),
     );
   }
 }
